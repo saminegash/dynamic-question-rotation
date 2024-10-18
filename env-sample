@@ -1,5 +1,2 @@
-DB_HOST=db
-DB_PORT=5432
-DB_USERNAME=test_user
-DB_PASSWORD=test_password
-DB_NAME=question_rotation
+DATABASE_URL=postgres://user:password@db:5432/question_rotation
+PORT=3000
