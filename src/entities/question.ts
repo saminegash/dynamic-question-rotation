@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { Region } from "./region";
 
 @Entity()
@@ -10,5 +10,6 @@ export class Question {
   content!: string;
 
   @ManyToOne(() => Region, (region) => region.questions)
+  @JoinColumn({ name: "region_id" }) 
   region!: Region;
 }
