@@ -1,5 +1,6 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
+import { AppDataSource } from './config/database';
 
 const app = express();
 
@@ -21,4 +22,14 @@ const swaggerDocument = {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
-export default app;
+AppDataSource.initialize().then(() => {
+    console.log("Data Source has been initialized")
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, ()=>{
+        console.log(`Server running on port ${PORT}`);
+        console.log(`Swagger UI available at http://localhost:${PORT}/api-docs`);
+    });
+}).catch((err) => {
+    console.error("Error during Data Source initialization", err)
+})

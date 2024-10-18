@@ -6,7 +6,11 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432/question_rotation
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=user
+      - DB_PASSWORD=password
+      - DB_NAME=question_rotation
   db:
     image: postgres:13
     environment:
